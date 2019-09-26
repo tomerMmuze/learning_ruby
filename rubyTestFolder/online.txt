@@ -1,0 +1,5 @@
+Mmuze helps take the experience of an in store associate and brings it online. Now the latest product information, style, beauty and recipe recommendations are all available to customers online, in app, or via smart speaker through one consistent cross platform experience.
+
+No scrolling, or filtering required. Instead a virtual personal shopping assistant waits to ask and answer all of the most relevant questions, guiding them through the ultimate online shopping experience via natural language two-way dialog.
+
+Founded in 2014, the Mmuze team has spent years perfecting its proprietary NLU engine. We like to call it The Brain. And it’s that retail and vertical specific brain that powers the virtual human-like conversations Mmuze generates between online retailers in Fashion, Beauty, and Grocery and their customers.

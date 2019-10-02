@@ -1,7 +1,5 @@
 require 'mongo'
 
-
-#should i pass client as a variable between all methods or create a new one every time
 class MongoOperations
 
   def self.create_client
@@ -9,8 +7,7 @@ class MongoOperations
     return client
   end
 
-  def self.create_mongo_db(db_name)
-    client = create_client
+  def self.create_mongo_db(client, db_name)
     new_db = Mongo::Database.new(client, :"#{db_name}")
     client.close
     return new_db
@@ -21,21 +18,13 @@ class MongoOperations
     return new_collection
   end
 
-  def self.insert_to_collection(db_name, collection_name, word, count)
-    client = Mongo::Client.new([ '127.0.0.1:27017' ], :database => "#{db_name}")
-
-    client.collections.each { |coll| puts coll.name }
-
-    current_collection = client[:"#{collection_name}"]
+  def self.insert_to_collection(collection, word, count)
     doc = {word: word, count: count}
-    res = current_collection.insert_one(doc)
-    current_collection.find.each{|food| puts food}
+    res= collection.insert_one(doc)
   end
 
-  def self.delete_collection(collection_name)
-    client = create_client
-    res = client[:"#{collection_name}"].drop()
-    return res
+  def self.delete_collection_direct(collection)
+    collection.drop
   end
 
   def self.delete_db(db)

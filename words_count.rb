@@ -1,4 +1,6 @@
 require 'concurrent'
+require 'mongo'
+require_relative 'mongo_operations'
 
 class WordsCount
   @words_hash
@@ -44,8 +46,22 @@ class WordsCount
 
 end
 
+
+#words_counter = WordsCount.new('/Users/tomerbendavid/RubymineProjects/learning_ruby/rubyTestFolder')
+#res = MongoOperations.delete_collection(collection_name)
+#MongoOperations.delete_db(new_db)
 words_counter = WordsCount.new(ARGV[0])
+
+db_name = 'words'
+collection_name = "words_count"
+
 words_counter.get_files_from_dir
-words_counter.words_hash.each do |word, count|
+new_db = MongoOperations.create_mongo_db('words')
+new_collection = MongoOperations.create_mongo_collection(new_db, collection_name)
+words_counter.words_hash.each do|word, count|
+  MongoOperations.insert_to_collection(db_name, collection_name, word, count)
   puts "#{word} : #{count}"
 end
+
+
+
